@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "a90fd242-bdad-4449-9482-a9d0645c8d78",
+		"name": "Eventos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Actualizar Evento",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/54299/OneDrive/Escritorio/uñas/Imagen de WhatsApp 2022-11-12 a las 20.22.40.jpg"
+						},
+						{
+							"key": "titulo",
+							"value": "Nuevo Titulo 222",
+							"type": "default"
+						},
+						{
+							"key": "fecha_evento",
+							"value": "2023-07-23",
+							"type": "default"
+						},
+						{
+							"key": "horario_inicio",
+							"value": "13:13:13",
+							"type": "default"
+						},
+						{
+							"key": "descripcion",
+							"value": "Nueva Descripcion",
+							"type": "text"
+						},
+						{
+							"key": "id_usuario",
+							"value": "666",
+							"type": "default"
+						},
+						{
+							"key": "redes_sociales",
+							"value": "[{ \"red\":\"facebook\" ,\"link\":\"facebooknuevo.com\"},{\"red\":\"twiter\", \"link\":\"twiternuevo.com\" }]",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/evento/637ba32007b85705e62e8493",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"evento",
+						"637ba32007b85705e62e8493"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar un Evento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/evento/637ba32007b85705e62e8493",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"evento",
+						"637ba32007b85705e62e8493"
+					]
+				}
+			},
+			"response": []
+		},
+		{ 
+			"name": "Buscar Eventos en un Rango skip limit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "skip",
+							"value": "3",
+							"type": "default"
+						},
+						{
+							"key": "limit",
+							"value": "2",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/eventos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"eventos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Nuevo Evento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/54299/OneDrive/Escritorio/_MG_6101.webp"
+						},
+						{
+							"key": "titulo",
+							"value": "dfsdfsd",
+							"type": "default"
+						},
+						{
+							"key": "fecha_evento",
+							"value": "2022-11-23",
+							"type": "default"
+						},
+						{
+							"key": "horario_inicio",
+							"value": "13:20:00",
+							"type": "default"
+						},
+						{
+							"key": "descripcion",
+							"value": "una descripcion",
+							"type": "default"
+						},
+						{
+							"key": "flyer",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "id_usuario",
+							"value": "234",
+							"type": "default"
+						},
+						{
+							"key": "redes_sociales",
+							"value": "[{ \"red\":\"facebook\" ,\"link\":\"facebook.com\"},{\"red\":\"twiter\", \"link\":\"twiter.com\" }]",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3003/api/evento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"evento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Evento",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3003/api/evento/636ffeaf20867800f96d5983",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"api",
+						"evento",
+						"636ffeaf20867800f96d5983"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
