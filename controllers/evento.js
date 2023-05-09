@@ -88,9 +88,10 @@ function saveEvento(req, res,next){
         obj_evento.create_date=Date.now()  
         obj_evento.create_lastup=obj_evento.create_date
         console.log(req.body.id_usuario);
-        let el_id_usuario=parseInt(req.body.id_usuario);
-        let objectIdUser = mongoose.Types.ObjectId(el_id_usuario);
-        obj_evento.id_usuario=objectIdUser
+        //let el_id_usuario=parseInt(req.body.id_usuario);
+        //let objectIdUser = mongoose.Types.ObjectId(el_id_usuario);
+        //obj_evento.id_usuario=objectIdUser
+        obj_evento.id_usuario=req.body.id_usuario
         obj_evento.redes_sociales=in_redes_sociales                
         obj_evento.save((err,eventoStored)=>{
             if (err) {              

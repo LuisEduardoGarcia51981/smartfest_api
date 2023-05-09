@@ -3,7 +3,7 @@ const express = require('express')
 const bodyParser=require('body-parser')
 const app=express()
 const cors = require('cors')
-let ip='192.168.100.4';
+let ip='192.168.0.154';
 app.use(cors({
     origin: [ 'http://'+ip+':19006','http://localhost:19006','http://127.0.0.1:19006']
 }));
