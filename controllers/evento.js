@@ -14,7 +14,7 @@ function updateEvento(req,res){
       try {
         fs.unlinkSync('./public/web/data/eventos/'+eventoReturn.flyer)        
       } catch(err) {        
-        return res.status(404).send({message:'Problemas en la edicion del archivo'})  
+        //return res.status(404).send({message:'Server Error: Problemas en la edicion del archivo'})  
       }            
     })
     let update=req.body        
@@ -26,16 +26,20 @@ function updateEvento(req,res){
     let in_redes_sociales=[]
     if (typeof req.body.redes_sociales === 'string' || req.body.redes_sociales instanceof String)  
         in_redes_sociales = JSON.parse(req.body.redes_sociales);  
-    let record={ 
-        titulo: update.titulo, 
+    //console.log(update.fecha_evento);    
+    let record={     
+        titulo: update.titulo,
         fecha_evento:update.fecha_evento,
-        horario_inicio:fecha_hora,
+        horario_inicio:fecha_hora,        
         descripcion:update.descripcion,
-        id_usuario:update.id_usuario,
-        direccion:update.direccion,      
-        redes_sociales: in_redes_sociales,
-        flyer:nombre_archivo,
+        direccion:update.direccion, 
+        tipofiesta:update.tipofiesta,
+        clasificacion:update.clasificacion  ,
+        activo:update.activo,
+        //flyer:update.file,//me genera dudas
         create_lastup:Date.now(),
+        redes_sociales: in_redes_sociales,                                 
+        id_usuario:update.id_usuario,             
     };        
     Evento.findByIdAndUpdate(eventoId,record,{new: true},  (err, eventoUpdated)=>{
         if (err) 
@@ -64,8 +68,7 @@ function getEventos(req, res){
         res.status(200).send({eventos})
     }).skip(skip).limit(limit)
 }
-function saveEvento(req, res,next){ 
-        console.log("en saveEvento");
+function saveEvento(req, res,next){         
         const extension=req.file.originalname.slice(req.file.originalname.lastIndexOf('.'))                
         let nombre_archivo=Date.now()+extension  
         const newpath = `./public/web/assets/photos/${nombre_archivo}`;        
@@ -86,8 +89,7 @@ function saveEvento(req, res,next){
         obj_evento.activo=req.body.activo   
         obj_evento.flyer=nombre_archivo     
         obj_evento.create_date=Date.now()  
-        obj_evento.create_lastup=obj_evento.create_date
-        console.log(req.body.id_usuario);
+        obj_evento.create_lastup=obj_evento.create_date        
         //let el_id_usuario=parseInt(req.body.id_usuario);
         //let objectIdUser = mongoose.Types.ObjectId(el_id_usuario);
         //obj_evento.id_usuario=objectIdUser
@@ -136,7 +138,7 @@ function getEventosUser(req, res){
   //console.log(userId);
   Evento.find({ id_usuario: userId},(err,eventos)=>{
       if (err) return res.status(500).send({message:'Error al realizar la peticion'})
-      if (!eventos) return res.status(404).send({message:'Productos del usuario solicitado no encontrados'})
+      if (!eventos) return res.status(404).send({message:'Productos del usuario solicitado no encontrados'})      
       res.status(200).send({eventos})
   })
 }
