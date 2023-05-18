@@ -71,7 +71,7 @@ function getEventos(req, res){
 function saveEvento(req, res,next){         
         const extension=req.file.originalname.slice(req.file.originalname.lastIndexOf('.'))                
         let nombre_archivo=Date.now()+extension  
-        const newpath = `./public/web/assets/photos/${nombre_archivo}`;        
+        const newpath = `./public/web/data/eventos/${nombre_archivo}`;    
         fs.writeFileSync(newpath, req.file.buffer);       
         let in_redes_sociales=[]              
         if (typeof req.body.redes_sociales === 'string' || req.body.redes_sociales instanceof String)  
@@ -104,8 +104,7 @@ function saveEvento(req, res,next){
         })                    
 }
 function deleteEvento(req,res){
-    let eventoId=req.params.eventoId    
-    console.log("aca deleteEvento");
+    let eventoId=req.params.eventoId            
     Evento.findById(eventoId, (err, eventoReturn) =>{
 
       //verificamos si el evento a eliminar existe:
@@ -116,11 +115,11 @@ function deleteEvento(req,res){
       try {
         fs.unlinkSync(imagen)        
       } catch(err) {        
-        return res.status(404).send({message:'Problemas en la eliminación del archivo. Probablemente no se encontro la imagen'})  
+        //return res.status(404).send({message:'Problemas en la eliminación del archivo. Probablemente no se encontro la imagen'})  
       }                         
           
          eventoReturn.remove(err => {
-             if (err) res.status(404).send({message:'El evento se ha podido eliminar'})
+             if (err) res.status(404).send({message:'El evento no se ha podido eliminar'})
              res.status(200).send({message:'El evento se ha eliminado correctamente'})
          })    
        

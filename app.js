@@ -3,14 +3,14 @@ const express = require('express')
 const bodyParser=require('body-parser')
 const app=express()
 const cors = require('cors')
-let ip='192.168.2.118';
+let ip='192.168.100.4';
 app.use(cors({
     origin: [ 'http://'+ip+':19006','http://localhost:19006','http://127.0.0.1:19006']
 }));
 //app.use(express.static('/public/web/assets/photos'));
 const path = require('path')
-
-app.use('/img', express.static(path.join(__dirname, './public/web/assets/photos')))
+app.use('/img', express.static(path.join(__dirname, './public/web/data/eventos/')))
+app.use('/assets', express.static(path.join(__dirname, './public/web/assets/')))
 const api_route_eventos= require ('./routes/evento.js')
 const api_route_users= require ('./routes/user.js')
 app.use(bodyParser.urlencoded({extended:false}))
