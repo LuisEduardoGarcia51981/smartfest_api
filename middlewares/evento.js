@@ -133,7 +133,7 @@ const validateEdit = [
       };
     }),
   check('file')
-    .custom((value, { req }) => {
+    .custom((value, { req }) => { 
       if (typeof (value) != "undefined") { //el archivo existe        
              
         if (req.file !== "" && req.file !== undefined) {
@@ -149,7 +149,7 @@ const validateEdit = [
           }
         }
         else {
-          throw new Error('Imagen inexistente' +req.file)
+          throw new Error('Imagen inexistente ' +req.file)
         }
       }
       else {
@@ -167,6 +167,16 @@ const validateEdit = [
         }
       };
     }),
+  (req, res, next) => {
+    validateResult(req, res, next)
+  }
+]
+
+const validateGetEventosScroll = [
+  check('page')
+    .exists().withMessage('El número de página es obligatorio')
+    .notEmpty().withMessage('El número de página no puede ser vacio')
+    .isNumeric().withMessage('El campo page no es un identificador válido para páginas, tiene que ser un número'),
   (req, res, next) => {
     validateResult(req, res, next)
   }
@@ -232,5 +242,5 @@ const validateGetEventosUser = [
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
-module.exports = {validateGetEventosUser, validateCreate, validateEdit, validateGetEvento, validateGetEventos, validateDeleteEvento }
+module.exports = {validateGetEventosScroll,validateGetEventosUser, validateCreate, validateEdit, validateGetEvento, validateGetEventos, validateDeleteEvento }
 //module.exports = { validateCreate, validateEdit, validateGetEvento, validateGetEventos, validateDeleteEvento }

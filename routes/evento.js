@@ -3,7 +3,7 @@
 const express = require('express')
 const EventoCtrl=require('../controllers/evento')
 const api_route= express.Router()
-const {validateGetEventosUser,validateCreate,validateEdit,validateGetEvento,validateGetEventos,validateDeleteEvento} =require('../middlewares/evento')
+const {validateGetEventosScroll,validateGetEventosUser,validateCreate,validateEdit,validateGetEvento,validateGetEventos,validateDeleteEvento} =require('../middlewares/evento')
 //const {validateCreate,validateEdit,validateGetEvento,validateGetEventos,validateDeleteEvento} =require('../middlewares/evento')
 const multer = require('multer'); 
 const upload = multer({});
@@ -21,6 +21,7 @@ api_route.get('/evento/:eventoId',validateGetEvento,EventoCtrl.getEvento)
 //usa skip, limit
 api_route.get('/eventos', validateGetEventos,EventoCtrl.getEventos) //asociado a la funcion de callback: getEventos
 
+
 //eliminar un evento  
 api_route.delete('/evento/:eventoId',validateDeleteEvento,EventoCtrl.deleteEvento )
 //-------------------------------------------------------------------------
@@ -30,6 +31,9 @@ api_route.delete('/evento/:eventoId',validateDeleteEvento,EventoCtrl.deleteEvent
 
 //Buscar todos los eventos creados por un usuario:
 api_route.get('/eventosUser',validateGetEventosUser,EventoCtrl.getEventosUser)
+
+//Nuevo: Buscar los eventos por una página dada. Se usa para el infinite scroll:
+api_route.get('/eventosScroll',validateGetEventosScroll,EventoCtrl.getEventosScroll)
 
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
